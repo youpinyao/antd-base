@@ -1,0 +1,27 @@
+{
+  "name": "meetyou-antd-base",
+  "version": "0.0.1",
+  "description": "custom of antd for meetyou",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youpinyao/meetyou-antd-base.git"
+  },
+  "keywords": [
+    "antd",
+    "meetyou"
+  ],
+  "author": "youpinyao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youpinyao/meetyou-antd-base/issues"
+  },
+  "homepage": "https://github.com/youpinyao/meetyou-antd-base#readme",
+  "dependencies": {
+    "antd": "^3.0.2",
+    "jquery": "^3.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}

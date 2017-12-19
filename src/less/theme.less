@@ -1,0 +1,150 @@
+@import './vars';
+:global {
+  body {
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      list-style: none;
+    }
+    div.ant-layout[data-reactroot] {
+      min-width: 1200px;
+    }
+    a {
+      color: @link;
+      &:hover {
+        color: @link;
+      }
+      &:focus {
+        text-decoration: none;
+      }
+    }
+    .ant-menu-item {
+      font-size: @font-size-base * 1.29px;
+    }
+    .ant-table-tbody>tr:hover {
+      td {
+        background-color: inherit;
+      }
+    }
+    .ant-table-tbody>tr:nth-child(even)>td {
+      background-color: #f9fafc;
+    }
+    .ant-table-thead>tr>th {
+      border-bottom: 1px solid @border-color-split;
+      border-top: 1px solid @border-color-split;
+    }
+    .ant-table,
+    .ant-table table {
+      border-radius: 0;
+    }
+    .ant-table-placeholder,
+    .ant-table table {
+      border-left: 1px solid @border-color-split;
+      border-right: 1px solid @border-color-split;
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-item,
+    .ant-pagination-jump-prev,
+    .ant-pagination-jump-next {
+      height: @btn-height-base;
+      line-height: @btn-height-base;
+      min-width: @btn-height-base;
+    }
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-jump-prev,
+    .ant-pagination-jump-next {
+      a {
+        height: @btn-height-base;
+      }
+    }
+    .ant-pagination-prev .ant-pagination-item-link:after,
+    .ant-pagination-next .ant-pagination-item-link:after {
+      line-height: @btn-height-base;
+      height: @btn-height-base - 2px;
+    }
+    .ant-menu.ant-menu-dark .ant-menu-item-selected {
+      background-color: transparent;
+    }
+    .ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+      &:after {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 14px;
+        margin: auto;
+        height: 4px;
+        border-radius: 3px;
+        background: @primary-color;
+        content: "";
+        opacity: 0;
+        transition: opacity .3s, transform .3s;
+        transform: translateY(14px);
+      }
+      &.ant-menu-item-selected {
+        &:after {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .ant-row.ant-form-item.ant-col-6 {
+      max-width: @input-max-width;
+      min-width: @input-min-width;
+    }
+
+    .fr {
+      float: right;
+    }
+    .fl {
+      float: left;
+    }
+    .left {
+      text-align: left;
+    }
+    .right {
+      text-align: right;
+    }
+
+    @paddings: pb, pl, pt, pr;
+    @directions: bottom, left, top, right;
+    @margins: mb, ml, mt, mr;
+    @sizes: 30, 25, 20, 15, 10, 5, 0;
+    @typepadding: padding;
+    @tpyemargin: margin;
+
+    .loop(length(@paddings), @paddings, @directions, @typepadding);
+    .loop(length(@margins), @margins, @directions, @tpyemargin);
+
+    .loop(@count, @keys, @values, @type) when (@count > 0) {
+      .loop(@count - 1, @keys, @values, @type);
+      @v1: extract(@keys, @count);
+      @v2: extract(@values, @count);
+
+      .loop-size(@v1, @v2, @type, length(@sizes));
+    }
+    .loop-size(@v1, @v2, @type, @count) when (@count > 0) {
+      .loop-size(@v1, @v2, @type, @count - 1);
+      @v3: extract(@sizes, @count);
+
+      .@{v1}-@{v3} {
+        @{type}-@{v2}: @v3 * 1px;
+      }
+    }
+
+    .ant-form-item-control-wrapper {
+      padding-top: @input-height-base;
+    }
+    .ant-form-item-label + .ant-form-item-control-wrapper {
+      padding-top: 0;
+    }
+  }
+   :root body .ant-pagination-prev .ant-pagination-item-link:after,
+   :root body .ant-pagination-next .ant-pagination-item-link:after {
+    font-size: @font-size-base;
+  }
+}

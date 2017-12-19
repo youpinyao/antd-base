@@ -1,0 +1,35 @@
+@import '~less/vars';
+
+/* 二级菜单样式 */
+
+.second-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-left: 0;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: @header-height;
+  background: @white;
+  box-shadow: inset 0 -1px 0 0 @border-color-split;
+  padding-left: 250px;
+  ul {
+    li {
+      float: left;
+      line-height: @second-nav-height;
+      font-size: @font-size-base * 1.15px;
+      a {
+        display: block;
+        padding: 0px 20px;
+        color: @text-color;
+        transition: color 300ms ease;
+      }
+      &:hover a,
+      &.active a {
+        color: @primary-color;
+      }
+    }
+  }
+}
