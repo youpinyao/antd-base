@@ -1,6 +1,6 @@
 {
   "name": "meetyou-antd-base",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "custom of antd for meetyou",
   "main": "index.js",
   "scripts": {},
@@ -23,5 +23,13 @@
     "jquery": "^3.2.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0"
   }
 }
