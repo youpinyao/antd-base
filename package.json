@@ -18,7 +18,7 @@
     "url": "https://github.com/youpinyao/meetyou-antd-base/issues"
   },
   "homepage": "https://github.com/youpinyao/meetyou-antd-base#readme",
-  "dependencies": {
+  "peerDependencies": {
     "antd": "^3.0.2",
     "jquery": "^3.2.1",
     "react": "^16.2.0",
