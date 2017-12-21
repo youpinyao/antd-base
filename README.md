@@ -1,5 +1,5 @@
 # meetyou-antd-base
-对antd的主体定制，基于antd3.x
+对antd的主题定制，基于antd3.x
 
 ## 主题引入
 ```
