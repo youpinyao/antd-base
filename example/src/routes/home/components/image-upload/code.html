@@ -1,0 +1,28 @@
+// 额外参数配置，其他与Upload组件相同
+ImageUpload.propTypes = {
+  // 上传文件最大尺寸
+  maxSize: PropTypes.number,
+  // 上传文件最小尺寸
+  minSize: PropTypes.number,
+  // 上传最大数量
+  limit: PropTypes.number,
+  // 上传按钮文本
+  text: PropTypes.any,
+};
+
+ImageUpload.defaultProps = {
+  // upload 组件属性
+  accept: 'image/png,image/jpg,image/jpeg',
+  listType: 'picture-card',
+  beforeUpload() {
+    return true;
+  },
+  onChange() {},
+  multiple: false,
+
+  // 自定义属性
+  maxSize: 5,
+  minSize: 0,
+  limit: 0,
+  text: <span>点击上传</span>,
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Upload, Icon, message, Modal } from 'antd';
 import classnames from 'classnames';
 import lodash from 'lodash';
@@ -15,7 +15,7 @@ export default class ImageUpload extends React.Component {
     };
   }
   render() {
-    const { size, limit, text, beforeUpload, fileList, multiple } = this.props;
+    const { maxSize, minSize, limit, text, beforeUpload, fileList, multiple } = this.props;
 
     const { previewVisible, previewImage } = this.state;
 
@@ -26,11 +26,15 @@ export default class ImageUpload extends React.Component {
       if (!isIMG) {
         message.error('请上传图片');
       }
-      const isLt2M = file.size / 1024 / 1024 < size;
-      if (!isLt2M) {
-        message.error(`图片必须小于${size}MB!`);
+      const isMax = file.size / 1024 / 1024 <= maxSize;
+      const isMin = file.size / 1024 / 1024 >= minSize;
+      if (!isMax) {
+        message.error(maxSize >= 1 ? `图片必须小于${maxSize}MB!` : `图片必须小于${parseInt(maxSize * 1024, 10)}K!`);
       }
-      return isIMG && isLt2M && beforeUpload(file, this.props);
+      if (!isMin) {
+        message.error(minSize >= 1 ? `图片必须小于${minSize}MB!` : `图片必须大于${parseInt(minSize * 1024, 10)}K!`);
+      }
+      return isIMG && isMax && isMin && beforeUpload(file, this.props);
     };
 
     const uploadButton = (
@@ -88,10 +92,18 @@ ImageUpload.defaultProps = {
     return true;
   },
   onChange() {},
-  urlKey: undefined,
-  size: 5,
-  limit: undefined,
   multiple: false,
+
+  // 自定义属性
+  maxSize: 5,
+  minSize: 0,
+  limit: 0,
+  text: <span>点击上传</span>,
 };
 
-ImageUpload.propTypes = {};
+ImageUpload.propTypes = {
+  maxSize: PropTypes.number,
+  minSize: PropTypes.number,
+  limit: PropTypes.number,
+  text: PropTypes.any,
+};
