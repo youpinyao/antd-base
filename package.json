@@ -56,6 +56,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "redbox-react": "^1.4.3",
-    "ywebpack": "0.0.44"
+    "ywebpack": "0.0.45"
   }
 }
