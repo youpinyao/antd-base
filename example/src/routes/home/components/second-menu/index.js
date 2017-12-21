@@ -16,6 +16,7 @@ export default class SecondMenu extends React.Component {
     return (
       <div>
         <SecondMenuCustom
+          className="mb-20"
           style={{
             position: 'static',
           }}

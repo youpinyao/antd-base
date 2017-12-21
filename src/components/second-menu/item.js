@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import styles from './index.less';
 
 export default class SecondMenuItem extends React.Component {
@@ -13,7 +14,7 @@ export default class SecondMenuItem extends React.Component {
         {...{
           active: undefined,
         }}
-        className={cls}
+        className={classnames(this.props.className, cls)}
       >
         <a href={href}>{this.props.children}</a>
       </li>
