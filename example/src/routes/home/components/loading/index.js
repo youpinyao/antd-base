@@ -46,7 +46,7 @@ export default class ImageUpload extends React.Component {
           position: 'relative',
         }}
       >
-        <Button className="mb-15" onClick={showLoading} type="primary">显示loading 3秒</Button>
+        <Button className="mb-15" onClick={showLoading} type="primary">显示 3 秒</Button>
         <Button className="mb-15 ml-10" onClick={toggleFull} type="primary">{full ? '设置为非全屏' : '设置为全屏'}</Button>
         <LoadingCustom show={show} full={full} />
 

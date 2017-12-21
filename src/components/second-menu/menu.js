@@ -14,7 +14,7 @@ export default class MASecondMenu extends React.Component {
 
   render() {
     return (
-      <div className={styles.secondNav}>
+      <div {...this.props} className={styles.secondNav}>
         <ul className="clearfix">{this.props.children}</ul>
       </div>
     );
