@@ -56,6 +56,6 @@
     "less-vars-to-js": "^1.2.1",
     "nodemon": "^1.12.1",
     "redbox-react": "^1.4.3",
-    "ywebpack": "0.0.39"
+    "ywebpack": "0.0.40"
   }
 }
