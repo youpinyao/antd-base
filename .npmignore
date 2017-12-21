@@ -4,3 +4,6 @@ node_modules
 .eslintrc
 .gitignore
 .npmignore
+example
+.dll
+ywebpack.config.js
