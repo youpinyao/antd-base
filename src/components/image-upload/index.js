@@ -85,6 +85,7 @@ export default class ImageUpload extends React.Component {
 }
 
 ImageUpload.defaultProps = {
+  ...Upload.defaultProps,
   // upload 组件属性
   accept: 'image/png,image/jpg,image/jpeg',
   listType: 'picture-card',
@@ -102,6 +103,7 @@ ImageUpload.defaultProps = {
 };
 
 ImageUpload.propTypes = {
+  ...Upload.propTypes,
   maxSize: PropTypes.number,
   minSize: PropTypes.number,
   limit: PropTypes.number,

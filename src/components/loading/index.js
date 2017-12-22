@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antdes/spin/style/index.less';
+import 'antd/lib/spin/style/index.less';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 

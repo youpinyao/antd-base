@@ -1,15 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, Input, Select } from 'antd';
 import styles from './index.less';
 
 const Option = Select.Option;
 
-const defaultPageSelect = [10, 15, 20];
-
 export default class MATable extends React.Component {
   render() {
     let inputValue = 1;
-    const pageSelect = this.props.pageSelect || defaultPageSelect;
+    const pageSelect = this.props.pageSelect;
     const pagination = this.props.pagination || {};
     const onChange = this.props.onChange || function fn() {};
 
@@ -59,3 +58,14 @@ export default class MATable extends React.Component {
     );
   }
 }
+
+MATable.defaultProps = {
+  ...Table.defaultProps,
+  pageSelect: [10, 15, 20],
+};
+
+MATable.propTypes = {
+  ...Table.propTypes,
+  pageSelect: PropTypes.arrayOf(PropTypes.number),
+};
+

@@ -5,6 +5,7 @@ import { Collapse, Col, Row } from 'antd';
 import ImageUpload from './components/image-upload';
 import Loading from './components/loading';
 import SecondMenu from './components/second-menu';
+import Table from './components/table';
 
 const Panel = Collapse.Panel;
 
@@ -14,7 +15,7 @@ class Home extends React.Component {
       <Row>
         <Col span={1} />
         <Col span={22}>
-          <Collapse accordion defaultActiveKey="SecondMenu">
+          <Collapse accordion defaultActiveKey="Table">
             <Panel header="ImageUpload" key="ImageUpload">
               <ImageUpload />
             </Panel>
@@ -26,6 +27,9 @@ class Home extends React.Component {
             </Panel>
             <Panel header="SecondMenu" key="SecondMenu">
               <SecondMenu />
+            </Panel>
+            <Panel header="Table" key="Table">
+              <Table />
             </Panel>
           </Collapse>
         </Col>
