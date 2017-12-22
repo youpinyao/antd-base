@@ -21,7 +21,7 @@ module.exports = {
     modifyVars: vars,
   },
   production: {
-    publicPath: '/',
+    publicPath: './',
     extraBabelPlugins: [
       ['import', {
         libraryName: 'antd',
