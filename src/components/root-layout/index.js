@@ -1,13 +1,14 @@
 import React from 'react';
-import {
-  Layout,
-} from 'antd';
+import classnames from 'classnames';
+import { Layout } from 'antd';
 import styles from './index.less';
 
 export default class RootLayout extends React.Component {
   render() {
     return (
-      <Layout className={styles.rootLayout}>{this.props.children}</Layout>
+      <Layout {...this.props} className={classnames(this.props.className, styles.rootLayout)}>
+        {this.props.children}
+      </Layout>
     );
   }
 }

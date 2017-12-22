@@ -4,7 +4,7 @@ import dva from 'dva';
 import createLoading from 'dva-loading';
 import browserHistory from 'dva/router';
 
-import 'meetyou-antd-base/src/less/theme.less';
+import 'meetyou-antd-base/less/theme.less';
 import 'less/global.less';
 
 // mock

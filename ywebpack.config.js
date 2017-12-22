@@ -48,7 +48,7 @@ module.exports = {
         antdstyle: path.resolve(__dirname, './node_modules/antd/es/style'),
         less: path.resolve(__dirname, 'example/src/less'),
         images: path.resolve(__dirname, 'example/src/images'),
-        'meetyou-antd-base': path.resolve(__dirname, './'),
+        'meetyou-antd-base': path.resolve(__dirname, './src/'),
       },
     },
   },
