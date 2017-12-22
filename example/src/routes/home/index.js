@@ -15,7 +15,7 @@ class Home extends React.Component {
       <Row>
         <Col span={1} />
         <Col span={22}>
-          <Collapse accordion defaultActiveKey="Table">
+          <Collapse accordion defaultActiveKey="ImageUpload">
             <Panel header="ImageUpload" key="ImageUpload">
               <ImageUpload />
             </Panel>
