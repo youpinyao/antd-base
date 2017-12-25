@@ -40,6 +40,9 @@ class Home extends React.Component {
               <Panel header="Container" key="Container">
                 <Container>我是Container</Container>
               </Panel>
+              <Panel header="MultiFormItem" key="MultiFormItem">
+                <Container>继承自From.Item，用于识别多个需要验证的表单组件，原来的Item只会识别第一个表单组件</Container>
+              </Panel>
             </Collapse>
           </Col>
         </Row>

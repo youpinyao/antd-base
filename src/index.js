@@ -6,6 +6,7 @@ import Table from './components/table';
 import RootLayout from './components/root-layout';
 import SiderMenu from './components/sider-menu';
 import Container from './components/container';
+import MultiFormItem from './components/multi-form-item';
 
 export {
   ImageUpload,
@@ -15,4 +16,5 @@ export {
   RootLayout,
   SiderMenu,
   Container,
+  MultiFormItem,
 };
