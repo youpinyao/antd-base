@@ -5,7 +5,6 @@ import styles from './index.less';
 
 export default class SiderMenuContent extends React.Component {
   render() {
-    console.log(this.context);
     return (
       <div
         {...this.props}
