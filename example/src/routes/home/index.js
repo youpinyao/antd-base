@@ -18,7 +18,7 @@ class Home extends React.Component {
       <Container className="mt-20 mb-20 ml-20 mr-20">
         <Row>
           <Col span={24}>
-          {/* defaultActiveKey="Table" */}
+            {/* defaultActiveKey="Table" */}
             <Collapse accordion>
               <Panel header="ImageUpload" key="ImageUpload">
                 <ImageUpload />
