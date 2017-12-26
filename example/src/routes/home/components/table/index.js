@@ -10,26 +10,20 @@ export default class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageSelect: [2, 4, 8],
       loading: false,
-      pagination: {
-        total: tableData.length,
-        pageSize: 2,
-        current: 1,
-      },
     };
   }
   render() {
     const code = require('./code.html');
 
-    const { pageSelect, pagination, loading } = this.state;
+    const { loading } = this.state;
 
-    const onChange = (page) => {
+    const onChange = (pagination) => {
       this.setState({
         loading: true,
       });
       this.setState({
-        pagination: page,
+        pagination,
       });
 
       setTimeout(() => {
@@ -37,6 +31,8 @@ export default class Table extends React.Component {
           loading: false,
         });
       }, 1000);
+
+      console.log(pagination);
     };
 
     return (
@@ -47,8 +43,7 @@ export default class Table extends React.Component {
           columns={tableColumns()}
           rowKey={record => record.user_id}
           dataSource={tableData}
-          pagination={pagination}
-          pageSelect={pageSelect}
+          total={tableData.length * 2}
           loading={loading}
         />
         <div className="mb-10">

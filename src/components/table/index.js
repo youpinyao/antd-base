@@ -1,57 +1,111 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { Table, Input, Select } from 'antd';
 import styles from './index.less';
 
 const Option = Select.Option;
 
 export default class MATable extends React.Component {
-  render() {
-    let inputValue = 1;
-    const pageSelect = this.props.pageSelect;
-    const pagination = this.props.pagination || {};
-    const onChange = this.props.onChange || function fn() {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: this.props.pagination ? this.props.pagination.current : 1,
+      pagination: {
+        total: props.total,
+        pageSize: 10,
+        current: 1,
+      },
+    };
+    const onChangeFn = props.onChange || function fn() {};
+    const pagination = this.props.pagination || this.state.pagination;
 
-    if (pagination) {
-      inputValue = pagination.current || inputValue;
+    onChangeFn(pagination);
+  }
+
+  render() {
+    const pageSelect = this.props.pageSelect;
+    const pagination =
+      this.props.pagination === undefined ? this.state.pagination : this.props.pagination;
+    const onChangeFn = this.props.onChange || function fn() {};
+
+    if (this.props.total !== undefined) {
+      pagination.total = this.props.total;
     }
 
-    function onPressEnter(e) {
-      onChange({
+    const onChange = (np, filters, sorter) => {
+      const newPagination = {
+        ...pagination,
+        ...np,
+      };
+
+      this.setState({
+        pagination: newPagination,
+        inputValue: newPagination.current,
+      });
+      onChangeFn(newPagination, filters, sorter);
+    };
+
+    const onPressEnter = (e) => {
+      const newPagination = {
         ...pagination,
         current: parseInt(e.target.value, 10),
-      });
-    }
+      };
 
-    function handleSelect(size) {
-      onChange({
+      if (newPagination.current > Math.ceil(pagination.total / pagination.pageSize)) {
+        newPagination.current = Math.ceil(pagination.total / pagination.pageSize);
+      }
+      if (newPagination.current >= 0) {
+        newPagination.current = 1;
+      }
+
+      this.setState({
+        pagination: newPagination,
+        inputValue: newPagination.current,
+      });
+
+      onChangeFn(newPagination);
+    };
+
+    const handleSelect = (size) => {
+      const newPagination = {
         ...pagination,
         current: 1,
         pageSize: parseInt(size, 10),
+      };
+
+      this.setState({
+        pagination: newPagination,
+        inputValue: newPagination.current,
       });
-    }
+
+      onChangeFn(newPagination);
+    };
 
     return (
       <div className={styles.maTable}>
-        <Table {...this.props} />
-        <div className={styles.jump}>
+        <Table {...this.props} pagination={pagination} onChange={onChange} />
+        <div className={classnames(styles.jump, pagination === false ? styles.none : '')}>
           <span>跳至第</span>
           <Input
-            className={styles.numberInput}
+            className={classnames(styles.numberInput)}
             onPressEnter={onPressEnter}
-            defaultValue={inputValue}
+            onChange={(e) => {
+              this.setState({ inputValue: e.target.value });
+            }}
+            value={this.state.inputValue}
           />
           <span>页</span>
         </div>
-        <div className={styles.select}>
+        <div className={classnames(styles.select, pagination === false ? styles.none : '')}>
           <Select value={`${pagination.pageSize}`} onChange={handleSelect}>
-            {
-              pageSelect.map((s) => {
-                return (
-                  <Option key={`${s}`} value={`${s}`}>{s} 条 / 页</Option>
-                );
-              })
-            }
+            {pageSelect.map((s) => {
+              return (
+                <Option key={`${s}`} value={`${s}`}>
+                  {s} 条 / 页
+                </Option>
+              );
+            })}
           </Select>
         </div>
       </div>
@@ -62,10 +116,11 @@ export default class MATable extends React.Component {
 MATable.defaultProps = {
   ...Table.defaultProps,
   pageSelect: [10, 15, 20],
+  total: 0,
 };
 
 MATable.propTypes = {
   ...Table.propTypes,
+  total: PropTypes.number,
   pageSelect: PropTypes.arrayOf(PropTypes.number),
 };
-
