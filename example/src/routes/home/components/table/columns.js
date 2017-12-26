@@ -28,7 +28,7 @@ export function tableColumns() {
     {
       title: '剩余预算（元）',
       dataIndex: 'remain_amount',
-      sorter: false,
+      sorter: true,
     },
   ];
 }
