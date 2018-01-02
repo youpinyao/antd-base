@@ -1,6 +1,16 @@
 SiderMenu.propTypes = {
   title: PropTypes.string,
+  offsetTop: PropTypes.number,
+  leftScroll: PropTypes.bool, //是否跟随左右滚动条滚动
+  static: PropTypes.bool,
 };
+
+SiderMenu.defaultProps = {
+  offsetTop: 0,
+  leftScroll: false,
+  static: false,
+};
+
 
 SiderMenuItem.propTypes = {
   active: PropTypes.bool,

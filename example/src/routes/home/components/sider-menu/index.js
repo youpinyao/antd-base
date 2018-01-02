@@ -14,7 +14,7 @@ export default class SiderMenu extends React.Component {
 
     return (
       <div>
-        <SiderMenuCustom title="我是SiderMenu标题">
+        <SiderMenuCustom static title="我是SiderMenu标题">
           <Content>
             <Item title="菜单1" active />
             <Item title="菜单2">
