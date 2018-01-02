@@ -21,6 +21,9 @@ import {
     Table,
 } from 'meetyou-antd-base';
 ```
+
+[https://youpinyao.github.io/meetyou-antd-base/example/dist/index.html](https://youpinyao.github.io/meetyou-antd-base/example/dist/index.html)
+
 ## 组件列表
 - ImageUpload
 - Loading
