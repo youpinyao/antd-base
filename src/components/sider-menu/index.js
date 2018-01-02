@@ -28,7 +28,7 @@ class SiderMenu extends React.Component {
   setTop() {
     const offsetTop = this.props.offsetTop || 0;
     const leftScroll = this.props.leftScroll;
-    let top = $(window).scrollTop();
+    let top = -$(window).scrollTop();
 
     top += offsetTop;
 
