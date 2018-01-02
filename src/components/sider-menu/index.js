@@ -7,22 +7,27 @@ import SiderMenuItem from './item';
 import styles from './index.less';
 
 class SiderMenu extends React.Component {
-  state = {
-    position: undefined,
-    top: 0,
-    left: undefined,
-  };
+  constructor(props) {
+    super(props);
+    this.setTop = this.setTop.bind(this);
+    this.state = {
+      position: undefined,
+      top: 0,
+      left: undefined,
+    };
+  }
+
   componentDidMount() {
     $('body').addClass('has-sider-menu');
     this.setTop();
-    $(window).on('scroll', this.setTop.bind(this));
-    $(window).on('resize', this.setTop.bind(this));
+    $(window).on('scroll', this.setTop);
+    $(window).on('resize', this.setTop);
   }
 
   componentWillUnmount() {
     $('body').removeClass('has-sider-menu');
-    $(window).off('scroll', this.setTop.bind(this));
-    $(window).off('resize', this.setTop.bind(this));
+    $(window).off('scroll', this.setTop);
+    $(window).off('resize', this.setTop);
   }
 
   setTop() {
