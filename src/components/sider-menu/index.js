@@ -66,6 +66,7 @@ class SiderMenu extends React.Component {
         style={{
           top: staticModel ? undefined : top,
           left: staticModel ? undefined : left,
+          bottom: staticModel ? undefined : 0,
           position: staticModel ? undefined : position,
         }}
       >
