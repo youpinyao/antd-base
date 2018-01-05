@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import lodash from 'lodash';
 import { Table, Input, Select } from 'antd';
 import styles from './index.less';
 
@@ -14,8 +15,8 @@ export default class MATable extends React.Component {
       pagination: {
         total: 0,
         pageSize:
-          this.props.pagination === undefined && this.props.pageSize !== undefined
-            ? this.props.pageSize
+          this.props.pagination === undefined && this.props.defaultPageSize !== undefined
+            ? this.props.defaultPageSize
             : 10,
         current: 1,
       },
@@ -88,7 +89,7 @@ export default class MATable extends React.Component {
     return (
       <div className={styles.maTable}>
         <Table {...this.props} pagination={pagination} onChange={onChange} />
-        <div className={classnames(styles.jump, pagination === false ? styles.none : '')}>
+        <div className={classnames(styles.jump, pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '', this.props.loading ? styles.footerLoading : '')}>
           <span>跳至第</span>
           <Input
             className={classnames(styles.numberInput)}
@@ -100,7 +101,7 @@ export default class MATable extends React.Component {
           />
           <span>页</span>
         </div>
-        <div className={classnames(styles.select, pagination === false ? styles.none : '')}>
+        <div className={classnames(styles.select, pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '', this.props.loading ? styles.footerLoading : '')}>
           <Select value={`${pagination.pageSize}`} onChange={handleSelect}>
             {pageSelect.map((s) => {
               return (
@@ -120,12 +121,12 @@ MATable.defaultProps = {
   ...Table.defaultProps,
   pageSelect: [10, 15, 20],
   total: 0,
-  pageSize: 10,
+  defaultPageSize: 10,
 };
 
 MATable.propTypes = {
   ...Table.propTypes,
   total: PropTypes.number,
-  pageSize: PropTypes.number,
+  defaultPageSize: PropTypes.number,
   pageSelect: PropTypes.arrayOf(PropTypes.number),
 };

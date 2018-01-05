@@ -1,8 +1,12 @@
 // 额外配置，其他同Table组件相同
 MATable.defaultProps = {
   pageSelect: [10, 15, 20],
+  total: 0, // 如果不配置pagination 使用
+  defaultPageSize: 10, // 如果不配置pagination 使用
 };
 
 MATable.propTypes = {
   pageSelect: PropTypes.arrayOf(PropTypes.number),
+  total: PropTypes.number,
+  defaultPageSize: PropTypes.number,
 };
