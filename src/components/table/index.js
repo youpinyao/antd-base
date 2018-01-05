@@ -13,7 +13,10 @@ export default class MATable extends React.Component {
       inputValue: this.props.pagination ? this.props.pagination.current : 1,
       pagination: {
         total: 0,
-        pageSize: 10,
+        pageSize:
+          this.props.pagination === undefined && this.props.pageSize !== undefined
+            ? this.props.pageSize
+            : 10,
         current: 1,
       },
     };
@@ -31,9 +34,6 @@ export default class MATable extends React.Component {
 
     if (this.props.total !== undefined && this.props.pagination === undefined) {
       pagination.total = this.props.total;
-    }
-    if (this.props.pageSize !== undefined && this.props.pagination === undefined) {
-      pagination.pageSize = this.props.pageSize;
     }
 
     const onChange = (np, filters, sorter) => {
