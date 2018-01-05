@@ -58,7 +58,7 @@ export default class MATable extends React.Component {
       if (newPagination.current > Math.ceil(pagination.total / pagination.pageSize)) {
         newPagination.current = Math.ceil(pagination.total / pagination.pageSize);
       }
-      if (newPagination.current >= 0) {
+      if (newPagination.current <= 0) {
         newPagination.current = 1;
       }
 
