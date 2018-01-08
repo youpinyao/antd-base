@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
+import lodash from 'lodash';
 import isArray from 'lodash/isArray';
 
 const FIELD_DATA_PROP = 'data-__field';
@@ -7,7 +8,6 @@ const FIELD_DATA_PROP = 'data-__field';
 const FormItem = Form.Item;
 
 export default class MultiFormItem extends React.Component {
-
   getField() {
     const { children } = this.props;
     let fieldDataProp = undefined;
@@ -15,7 +15,14 @@ export default class MultiFormItem extends React.Component {
     let hasError = false;
 
     if (isArray(children)) {
-      children.forEach((item) => {
+      checkChild(children);
+    }
+
+    function checkChild(childs) {
+      childs.forEach((item) => {
+        if (!item.props) {
+          return;
+        }
         const itemData = item.props[FIELD_DATA_PROP];
 
         if (itemData) {
@@ -23,6 +30,9 @@ export default class MultiFormItem extends React.Component {
             hasError = true;
             setFieldProp(itemData);
           }
+        }
+        if (lodash.isArray(item.props.children)) {
+          checkChild(item.props.children);
         }
       });
     }
@@ -60,10 +70,6 @@ export default class MultiFormItem extends React.Component {
     );
   }
 }
-MultiFormItem.defaultProps = {
+MultiFormItem.defaultProps = {};
 
-};
-
-MultiFormItem.propTypes = {
-
-};
+MultiFormItem.propTypes = {};
