@@ -1,6 +1,5 @@
 @import '~antd/lib/style/mixins/clearfix.less';
 @import './vars';
-
 :global {
   body {
     .ant-tooltip {
@@ -46,7 +45,7 @@
     .ant-menu.ant-menu-dark .ant-menu-item-selected {
       background-color: transparent;
     }
-    .ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+    .ant-menu-dark.ant-menu-horizontal>.ant-menu-item {
       &:after {
         position: absolute;
         left: 20px;
@@ -68,12 +67,10 @@
         }
       }
     }
-
     .ant-row.ant-form-item.ant-col-6 {
       max-width: @input-max-width;
       min-width: @input-min-width;
     }
-
     .fr {
       float: right;
     }
@@ -86,37 +83,46 @@
     .right {
       text-align: right;
     }
-
-    @paddings: pb, pl, pt, pr;
-    @directions: bottom, left, top, right;
-    @margins: mb, ml, mt, mr;
-    @sizes: 30, 25, 20, 15, 10, 5, 0;
+    @paddings: pb,
+    pl,
+    pt,
+    pr;
+    @directions: bottom,
+    left,
+    top,
+    right;
+    @margins: mb,
+    ml,
+    mt,
+    mr;
+    @sizes: 30,
+    25,
+    20,
+    15,
+    10,
+    5,
+    0;
     @typepadding: padding;
     @tpyemargin: margin;
-
     .loop(length(@paddings), @paddings, @directions, @typepadding);
     .loop(length(@margins), @margins, @directions, @tpyemargin);
-
     .loop(@count, @keys, @values, @type) when (@count > 0) {
       .loop(@count - 1, @keys, @values, @type);
       @v1: extract(@keys, @count);
       @v2: extract(@values, @count);
-
       .loop-size(@v1, @v2, @type, length(@sizes));
     }
     .loop-size(@v1, @v2, @type, @count) when (@count > 0) {
       .loop-size(@v1, @v2, @type, @count - 1);
       @v3: extract(@sizes, @count);
-
       .@{v1}-@{v3} {
         @{type}-@{v2}: @v3 * 1px;
       }
     }
-
     .ant-form-item-control-wrapper {
       padding-top: @input-height-base;
     }
-    .ant-form-item-label + .ant-form-item-control-wrapper {
+    .ant-form-item-label+.ant-form-item-control-wrapper {
       padding-top: 0;
     }
   }
