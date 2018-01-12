@@ -24,6 +24,8 @@ export default class MATable extends React.Component {
     const onChangeFn = props.onChange || function fn() {};
     const pagination = this.props.pagination || this.state.pagination;
 
+    pagination.current = 1;
+
     onChangeFn(pagination);
   }
 
