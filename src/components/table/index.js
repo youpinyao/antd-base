@@ -51,8 +51,9 @@ export default class MATable extends React.Component {
       if (inputValue !== pagination.current) {
         params.inputValue = pagination.current;
       }
-
-      this.setState(params);
+      setTimeout(() => {
+        this.setState(params);
+      });
     }
 
     const onChange = (np, filters, sorter) => {
