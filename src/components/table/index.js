@@ -20,6 +20,7 @@ export default class MATable extends React.Component {
             : 10,
         current: 1,
       },
+      prevCurrent: 1,
     };
     const onChangeFn = props.onChange || function fn() {};
     const pagination = this.props.pagination || this.state.pagination;
@@ -34,9 +35,24 @@ export default class MATable extends React.Component {
     const pagination =
       this.props.pagination === undefined ? this.state.pagination : this.props.pagination;
     const onChangeFn = this.props.onChange || function fn() {};
+    const inputValue = this.state.inputValue;
+    const prevCurrent = this.state.prevCurrent;
 
     if (this.props.total !== undefined && this.props.pagination === undefined) {
       pagination.total = this.props.total;
+    }
+
+    // 如果外部改动current，让inputValue随之变化
+    if (prevCurrent !== pagination.current) {
+      const params = {
+        prevCurrent: pagination.current,
+      };
+
+      if (inputValue !== pagination.current) {
+        params.inputValue = pagination.current;
+      }
+
+      this.setState(params);
     }
 
     const onChange = (np, filters, sorter) => {
@@ -99,7 +115,7 @@ export default class MATable extends React.Component {
             onChange={(e) => {
               this.setState({ inputValue: e.target.value });
             }}
-            value={this.state.inputValue}
+            value={inputValue}
           />
           <span>页</span>
         </div>
