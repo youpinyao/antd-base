@@ -57,8 +57,10 @@ export default class MATable extends React.Component {
     }
 
     // 如果当前页数大于总页数，返回第一页
-    if (pagination.total &&
-      Math.ceil(pagination.total / pagination.pageSize) < pagination.current) {
+    if (
+      pagination.total &&
+      Math.ceil(pagination.total / pagination.pageSize) < pagination.current
+    ) {
       setTimeout(() => {
         onChangeFn({
           ...pagination,
@@ -119,7 +121,13 @@ export default class MATable extends React.Component {
     return (
       <div className={styles.maTable}>
         <Table {...this.props} pagination={pagination} onChange={onChange} />
-        <div className={classnames(styles.jump, pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '', this.props.loading ? styles.footerLoading : '')}>
+        <div
+          className={classnames(
+            styles.jump,
+            pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '',
+            this.props.loading ? styles.footerLoading : '',
+          )}
+        >
           <span>跳至第</span>
           <Input
             className={classnames(styles.numberInput)}
@@ -131,7 +139,13 @@ export default class MATable extends React.Component {
           />
           <span>页</span>
         </div>
-        <div className={classnames(styles.select, pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '', this.props.loading ? styles.footerLoading : '')}>
+        <div
+          className={classnames(
+            styles.select,
+            pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '',
+            this.props.loading ? styles.footerLoading : '',
+          )}
+        >
           <Select value={`${pagination.pageSize}`} onChange={handleSelect}>
             {pageSelect.map((s) => {
               return (
