@@ -56,6 +56,17 @@ export default class MATable extends React.Component {
       });
     }
 
+    // 如果当前页数大于总页数，返回第一页
+    if (pagination.total &&
+      Math.ceil(pagination.total / pagination.pageSize) < pagination.current) {
+      setTimeout(() => {
+        onChangeFn({
+          ...pagination,
+          current: 1,
+        });
+      });
+    }
+
     const onChange = (np, filters, sorter) => {
       const newPagination = {
         ...pagination,
