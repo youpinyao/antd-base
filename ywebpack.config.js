@@ -20,6 +20,10 @@ module.exports = {
   lessOptions: {
     modifyVars: vars,
   },
+  buildInclude: [{
+    include: '(node_modules/antd)',
+    cssModules: false,
+  }],
   production: {
     publicPath: './',
     extraBabelPlugins: [
