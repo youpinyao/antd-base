@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Collapse, Col, Row } from 'antd';
+import { Collapse, Col, Row, Button } from 'antd';
 import { Container } from 'meetyou-antd-base';
 
 import ImageUpload from './components/image-upload';
@@ -18,8 +18,14 @@ class Home extends React.Component {
       <Container className="mt-20 mb-20 ml-20 mr-20">
         <Row>
           <Col span={24}>
-
-            <Collapse accordion defaultActiveKey="Table">
+            <div className="pb-20">
+              <Button className="mr-10">btn</Button>
+              <Button className="mr-10" type="primary">btn</Button>
+              <Button className="mr-10" type="dashed">btn</Button>
+              <Button className="mr-10" type="danger">btn</Button>
+            </div>
+            {/* defaultActiveKey="Table" */}
+            <Collapse accordion>
               <Panel header="ImageUpload" key="ImageUpload">
                 <ImageUpload />
               </Panel>

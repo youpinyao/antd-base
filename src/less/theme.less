@@ -1,9 +1,59 @@
 @import '~antd/lib/style/mixins/clearfix.less';
+@import "~antd/lib/style/color/colorPalette.less";
+
 @import './vars';
 :global {
   body {
     .ant-btn {
       min-width: 88px;
+      &:focus {
+        border-color: @normal-color;
+        color: @text-color;
+        background-color: @white;
+        &:hover {
+          border-color: ~`colorPalette("@{primary-color}", 5)`;
+          color: ~`colorPalette("@{primary-color}", 5)`;
+          background-color: @white;
+        }
+      }
+      &.ant-btn-primary {
+        &:focus {
+          border-color: @primary-color;
+          color: @white;
+          background-color: @primary-color;
+
+          &:hover {
+            border-color: ~`colorPalette("@{primary-color}", 5)`;
+            color: @white;
+            background-color: ~`colorPalette("@{primary-color}", 5)`;
+          }
+        }
+      }
+      &.ant-btn-dashed {
+        &:focus {
+          border-color: @normal-color;
+          color: @text-color;
+          background-color: @white;
+          &:hover {
+            border-color: ~`colorPalette("@{primary-color}", 5)`;
+            color: ~`colorPalette("@{primary-color}", 5)`;
+            background-color: @white;
+          }
+        }
+      }
+
+      &.ant-btn-danger {
+        &:focus {
+          border-color: @normal-color;
+          color: @danger-color;
+          background-color: @bg-color;
+          &:hover {
+            border-color: @danger-color;
+            color: @white;
+            background-color: @danger-color;
+          }
+        }
+      }
     }
     .ant-popover {
       .ant-btn {
