@@ -32,3 +32,5 @@ import {
 - Table
 - SiderMenu
 - Container
+- MultiFormItem
+- Gallery
