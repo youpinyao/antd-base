@@ -8,6 +8,7 @@ import Loading from './components/loading';
 import SecondMenu from './components/second-menu';
 import Table from './components/table';
 import SiderMenu from './components/sider-menu';
+import GalleryExample from './components/gallery';
 
 
 const Panel = Collapse.Panel;
@@ -49,6 +50,9 @@ class Home extends React.Component {
               </Panel>
               <Panel header="MultiFormItem" key="MultiFormItem">
                 <Container>继承自From.Item，用于识别多个需要验证的表单组件，原来的Item只会识别第一个表单组件</Container>
+              </Panel>
+              <Panel header="Gallery" key="Gallery">
+                <GalleryExample />
               </Panel>
             </Collapse>
           </Col>

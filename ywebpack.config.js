@@ -23,6 +23,9 @@ module.exports = {
   buildInclude: [{
     include: '(node_modules/antd)',
     cssModules: false,
+  }, {
+    include: '(node_modules/lightgallery.js)',
+    cssModules: false,
   }],
   production: {
     publicPath: './',
