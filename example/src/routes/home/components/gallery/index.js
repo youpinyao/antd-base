@@ -11,12 +11,14 @@ const code = `
 Gallery.propTypes = {
   visible: PropTypes.bool, // 是否可见
   images: PropTypes.array, // 画廊的图片参数
+  closable: PropTypes.bool, // 是否可以点击遮罩层关闭画廊
   callback: PropTypes.func, // onBeforeClose关闭画廊之前事件的回调函数
 };
 
 Gallery.defaultProps = {
   visible: false,
   images: [],
+  closable: false,
   callback: () => null,
 };
 \`\`\`
