@@ -1,6 +1,6 @@
 {
   "name": "meetyou-antd-base",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "custom of antd for meetyou",
   "main": "src/index.js",
   "scripts": {
@@ -22,13 +22,15 @@
     "url": "https://github.com/youpinyao/meetyou-antd-base/issues"
   },
   "homepage": "https://github.com/youpinyao/meetyou-antd-base#readme",
+  "dependencies": {
+    "lightgallery.js": "^1.0.1"
+  },
   "peerDependencies": {
     "antd": "^3.0.0",
     "jquery": "^1.12.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "lodash": "^4.17.4",
-    "lightgallery.js": "^1.0.1"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "antd": "^3.0.0",
