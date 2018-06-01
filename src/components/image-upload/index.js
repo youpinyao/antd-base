@@ -15,14 +15,15 @@ export default class ImageUpload extends React.Component {
     };
   }
   render() {
-    const { maxSize, minSize, limit, text, beforeUpload, fileList, multiple } = this.props;
+    const { maxSize, minSize, limit, text, beforeUpload, fileList, multiple, accept } = this.props;
+    const typeReg = new RegExp(`(${accept.split('image/').join('').split(',').join('|')})$`, 'g');
 
     const { previewVisible, previewImage } = this.state;
 
     let hasUploadButton = false;
 
     const defaulBeforeUpload = (file) => {
-      const isIMG = /(jpg|jpeg|png)$/g.test(file.type);
+      const isIMG = typeReg.test(file.type);
       if (!isIMG) {
         message.error('请上传图片');
       }
