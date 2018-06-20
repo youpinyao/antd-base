@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
   Button,
@@ -26,7 +26,7 @@ Gallery.defaultProps = {
 其他参数具体参考 [lightgallery.js Docs](https://sachinchoolur.github.io/lightgallery.js/docs/api.html)
 `;
 
-class GalleryExample extends Component {
+class GalleryExample extends PureComponent {
   constructor(props) {
     super(props);
 

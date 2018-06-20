@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 import 'lightgallery.js/lib/js/lightgallery.js';
@@ -26,7 +26,7 @@ const defaultProps = {
   callback: () => null,
 };
 
-class Gallery extends Component {
+class Gallery extends PureComponent {
   static propTypes = propTypes;
 
   static defaultProps = defaultProps;
