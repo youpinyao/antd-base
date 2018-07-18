@@ -10,22 +10,21 @@ const Option = Select.Option;
 export default class MATable extends React.Component {
   constructor(props) {
     super(props);
+    const pagination = this.props.pagination || {
+      total: 0,
+      pageSize:
+        this.props.pagination === undefined && this.props.defaultPageSize !== undefined
+          ? this.props.defaultPageSize
+          : 10,
+      current: 1,
+    };
+
     this.state = {
       inputValue: this.props.pagination ? this.props.pagination.current : 1,
-      pagination: {
-        total: 0,
-        pageSize:
-          this.props.pagination === undefined && this.props.defaultPageSize !== undefined
-            ? this.props.defaultPageSize
-            : 10,
-        current: 1,
-      },
+      pagination,
       prevCurrent: 1,
     };
     const onChangeFn = props.onChange || function fn() {};
-    const pagination = this.props.pagination || this.state.pagination;
-
-    pagination.current = 1;
 
     onChangeFn(pagination);
   }
