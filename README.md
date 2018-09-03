@@ -34,3 +34,4 @@ import {
 - Container
 - MultiFormItem
 - Gallery
+- OssUpload

@@ -8,6 +8,7 @@ import SiderMenu from './components/sider-menu';
 import Container from './components/container';
 import MultiFormItem from './components/multi-form-item';
 import Gallery from './components/gallery';
+import OssUpload from './components/oss-upload';
 
 export {
   ImageUpload,
@@ -19,4 +20,5 @@ export {
   Container,
   MultiFormItem,
   Gallery,
+  OssUpload,
 };
