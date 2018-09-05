@@ -73,7 +73,17 @@ export default function upload(option) {
       return option.onError(getError(option, xhr), getBody(xhr));
     }
 
-    option.onSuccess(getBody(xhr), xhr);
+    // [{"name":"rc-upload-1536111883779-2.txt","type":"text\/plain",
+    // "tmp_name":"\/tmp\/phptQa12K","error":0,"size":30249,"ext":"txt",
+    // "key":"file","url":"hdfs:\/\/bjn-1:8020\/da
+    // ta\/datamining\/crowd-compute\/id-mapping\/20180905\/220\/1536111890347.txt"}]
+
+    option.onSuccess(getBody(xhr) || [{
+      name: option.file.name,
+      type: option.file.type,
+      size: option.file.size,
+      url: `${option.data.host}${option.data.dir}${option.file.name}`,
+    }], xhr);
   };
 
 
