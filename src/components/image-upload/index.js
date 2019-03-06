@@ -15,8 +15,25 @@ export default class ImageUpload extends React.Component {
     };
   }
   render() {
-    const { maxSize, minSize, limit, text, beforeUpload, fileList, multiple, accept } = this.props;
-    const typeReg = new RegExp(`(${accept.split('image/').join('').split(',').join('|')})$`, 'g');
+    const {
+      maxSize,
+      minSize,
+      limit,
+      text,
+      beforeUpload,
+      onChange,
+      fileList,
+      multiple,
+      accept,
+    } = this.props;
+    const typeReg = new RegExp(
+      `(${accept
+        .split('image/')
+        .join('')
+        .split(',')
+        .join('|')})$`,
+      'g',
+    );
 
     const { previewVisible, previewImage } = this.state;
 
@@ -30,12 +47,30 @@ export default class ImageUpload extends React.Component {
       const isMax = file.size / 1024 / 1024 <= maxSize;
       const isMin = file.size / 1024 / 1024 >= minSize;
       if (!isMax) {
-        message.error(maxSize >= 1 ? `图片必须小于${maxSize}MB!` : `图片必须小于${parseInt(maxSize * 1024, 10)}K!`);
+        message.error(
+          maxSize >= 1
+            ? `图片必须小于${maxSize}MB!`
+            : `图片必须小于${parseInt(maxSize * 1024, 10)}K!`,
+        );
       }
       if (!isMin) {
-        message.error(minSize >= 1 ? `图片必须小于${minSize}MB!` : `图片必须大于${parseInt(minSize * 1024, 10)}K!`);
+        message.error(
+          minSize >= 1
+            ? `图片必须大于${minSize}MB!`
+            : `图片必须大于${parseInt(minSize * 1024, 10)}K!`,
+        );
       }
       return isIMG && isMax && isMin && beforeUpload(file, this.props);
+    };
+    const defaultOnChange = (e) => {
+      if (e.fileList.length && !e.fileList.filter(item => !!item.status).length) {
+        onChange({
+          ...e,
+          fileList,
+        });
+        return;
+      }
+      onChange(e);
     };
 
     const uploadButton = (
@@ -73,6 +108,7 @@ export default class ImageUpload extends React.Component {
             className: '',
             beforeUpload: defaulBeforeUpload,
             onPreview: handlePreview,
+            onChange: defaultOnChange,
           }}
         >
           {hasUploadButton ? uploadButton : ''}
