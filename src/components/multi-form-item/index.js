@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'antd';
-import lodash from 'lodash';
 import isArray from 'lodash/isArray';
 
 const FIELD_DATA_PROP = 'data-__field';
@@ -31,7 +30,7 @@ export default class MultiFormItem extends React.Component {
             setFieldProp(itemData);
           }
         }
-        if (lodash.isArray(item.props.children)) {
+        if (isArray(item.props.children)) {
           checkChild(item.props.children);
         }
       });

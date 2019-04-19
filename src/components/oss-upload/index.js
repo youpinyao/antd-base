@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Upload } from 'antd';
-import lodash from 'lodash';
+import endsWith from 'lodash/endsWith';
 
 import customRequest from './request';
 
@@ -15,7 +15,7 @@ export default class OssUpload extends React.Component {
     let key = '${filename}';
 
     if (ossConfig.dir) {
-      if (!lodash.endsWith(ossConfig.dir, '/')) {
+      if (!endsWith(ossConfig.dir, '/')) {
         ossConfig.dir += '/';
       }
       key = `${ossConfig.dir}${key}`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import lodash from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { Table, Input, Select } from 'antd';
 import styles from './index.less';
 
@@ -123,7 +123,7 @@ export default class MATable extends React.Component {
         <div
           className={classnames(
             styles.jump,
-            pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '',
+            pagination === false || isEmpty(this.props.dataSource) ? styles.none : '',
             this.props.loading ? styles.footerLoading : '',
           )}
         >
@@ -141,7 +141,7 @@ export default class MATable extends React.Component {
         <div
           className={classnames(
             styles.select,
-            pagination === false || lodash.isEmpty(this.props.dataSource) ? styles.none : '',
+            pagination === false || isEmpty(this.props.dataSource) ? styles.none : '',
             this.props.loading ? styles.footerLoading : '',
           )}
         >

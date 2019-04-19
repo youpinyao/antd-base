@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import lodash from 'lodash';
+import startsWith from 'lodash/startsWith';
 import { routerRedux } from 'dva/router';
 import $ from 'jquery';
 
@@ -83,7 +83,7 @@ export default {
     updateState(state, { payload }) {
       const mergeState = {};
       state.menus.forEach((menu) => {
-        if (lodash.startsWith(payload.locationPathname, menu.path)) {
+        if (startsWith(payload.locationPathname, menu.path)) {
           mergeState.selectedMenu = menu;
         }
       });

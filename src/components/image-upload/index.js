@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Upload, Icon, message, Modal } from 'antd';
 import classnames from 'classnames';
-import lodash from 'lodash';
+import isNumber from 'lodash/isNumber';
 import styles from './index.less';
 
 export default class ImageUpload extends React.Component {
@@ -94,7 +94,7 @@ export default class ImageUpload extends React.Component {
     // 添加上传按钮
     if (
       (multiple &&
-        (!lodash.isNumber(limit) || (lodash.isNumber(limit) && fileList.length < limit))) ||
+        (!isNumber(limit) || (isNumber(limit) && fileList.length < limit))) ||
       fileList.length === 0
     ) {
       hasUploadButton = true;
