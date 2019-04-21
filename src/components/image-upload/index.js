@@ -26,9 +26,11 @@ export default class ImageUpload extends React.Component {
       multiple,
       accept,
     } = this.props;
+    const isVideo = /video\//g.test(accept);
+    const tipTypeText = isVideo ? '视频' : '图片';
     const typeReg = new RegExp(
       `(${accept
-        .split('image/')
+        .split(isVideo ? 'video/' : 'image/')
         .join('')
         .split(',')
         .join('|')})$`,
@@ -42,22 +44,22 @@ export default class ImageUpload extends React.Component {
     const defaulBeforeUpload = (file) => {
       const isIMG = typeReg.test(file.type);
       if (!isIMG) {
-        message.error('请上传图片');
+        message.error(`请上传${tipTypeText}`);
       }
       const isMax = file.size / 1024 / 1024 <= maxSize;
       const isMin = file.size / 1024 / 1024 >= minSize;
       if (!isMax) {
         message.error(
           maxSize >= 1
-            ? `图片必须小于${maxSize}MB!`
-            : `图片必须小于${parseInt(maxSize * 1024, 10)}K!`,
+            ? `${tipTypeText}必须小于${maxSize}MB!`
+            : `${tipTypeText}必须小于${parseInt(maxSize * 1024, 10)}K!`,
         );
       }
       if (!isMin) {
         message.error(
           minSize >= 1
-            ? `图片必须大于${minSize}MB!`
-            : `图片必须大于${parseInt(minSize * 1024, 10)}K!`,
+            ? `${tipTypeText}必须大于${minSize}MB!`
+            : `${tipTypeText}必须大于${parseInt(minSize * 1024, 10)}K!`,
         );
       }
       return isIMG && isMax && isMin && beforeUpload(file, this.props);
@@ -114,7 +116,27 @@ export default class ImageUpload extends React.Component {
           {hasUploadButton ? uploadButton : ''}
         </Upload>
         <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+          {(() => {
+            return /.mp4/g.test(previewImage) ? (
+              <video
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+                src={previewImage}
+                controls
+                poster={`${previewImage}?x-oss-process=video/snapshot,t_0,f_jpg,w_0,h_0,m_fast`}
+                preload="metadata"
+                webkit-playsinline="true"
+                playsinline="true"
+                x5-video
+                x5-video-player-fullscreen="false"
+                o-player-fullscreen="false"
+              ></video>
+            ) : (
+              <img alt="example" style={{ width: '100%' }} src={previewImage} />
+            );
+          })()}
         </Modal>
       </div>
     );
