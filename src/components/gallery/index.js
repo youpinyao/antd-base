@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 import 'lightgallery.js/lib/js/lightgallery.js';
@@ -15,6 +15,7 @@ const LightGallery = window.lightGallery;
 const propTypes = {
   visible: PropTypes.bool, // 是否可见
   images: PropTypes.array, // 画廊的图片参数
+  // eslint-disable-next-line
   closable: PropTypes.bool, // 是否可以点击遮罩层关闭画廊
   callback: PropTypes.func, // onBeforeClose关闭画廊之前事件的回调函数
 };
@@ -26,53 +27,59 @@ const defaultProps = {
   callback: () => null,
 };
 
-class Gallery extends PureComponent {
-  static propTypes = propTypes;
+class Gallery extends Component {
+  constructor(props) {
+    super(props);
+    this.showGallery = this.showGallery.bind(this);
+  }
+  componentWillReceiveProps(props) {
+    const { callback } = this.props;
+    if (props.visible && this.props.visible !== props.visible && this.$el) {
+      setTimeout(() => {
+        LightGallery(this.$el.get(0), { ...props });
 
-  static defaultProps = defaultProps;
-
+        this.$el.bind('onBeforeClose', () => {
+          if (callback) {
+            callback();
+          }
+          this.$el.remove();
+        });
+        this.showGallery();
+      });
+    }
+  }
+  showGallery() {
+    if (this.$el) {
+      $(
+        this.$el
+          .find('div')
+          .eq(0)
+          .get(0),
+      ).trigger('click');
+    }
+  }
   render() {
-    const {
-      visible,
-      images,
-      closable,
-      callback,
-    } = this.props;
+    const { visible, images } = this.props;
     return (
       <div
-        id="gallery"
         className={styles.galleryInit}
         style={{ display: visible ? 'block' : 'none' }}
-        ref={
-          (el) => {
-            if (el) {
-              const $el = $(el);
-              LightGallery(el, { closable, ...this.props });
-              $($el.find('div').eq(0).get(0)).trigger('click');
-              $el.bind('onBeforeClose', () => {
-                if (callback) {
-                  callback();
-                }
-                $el.remove();
-              });
-            }
+        ref={(el) => {
+          if (el) {
+            this.$el = $(el);
           }
-        }
+        }}
       >
         {images.map((image, key) => {
-          let pic = image;
-          if (/.gif/g.test(`${pic}`.toLowerCase())) {
-            if (/\?/g.test(`${pic}`.toLowerCase())) {
-              pic += `&t=${+new Date()}`;
-            } else {
-              pic += `?t=${+new Date()}`;
-            }
-          }
-          return <div data-src={pic} key={key}></div>;
+          const pic = image;
+          return <div data-src={pic} key={key} onClick={e => e.stopPropagation()} />;
         })}
       </div>
     );
   }
 }
+
+Gallery.propTypes = propTypes;
+Gallery.defaultProps = defaultProps;
 
 export default Gallery;
