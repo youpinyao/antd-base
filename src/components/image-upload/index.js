@@ -25,6 +25,7 @@ export default class ImageUpload extends React.Component {
       fileList,
       multiple,
       accept,
+      previewTitle,
     } = this.props;
     const isVideo = /video\//g.test(accept);
     const tipTypeText = isVideo ? '视频' : '图片';
@@ -115,7 +116,7 @@ export default class ImageUpload extends React.Component {
         >
           {hasUploadButton ? uploadButton : ''}
         </Upload>
-        <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
+        <Modal title={previewTitle} visible={previewVisible} footer={null} onCancel={handleCancel}>
           {(() => {
             return /.mp4/g.test(previewImage) ? (
               <video
@@ -159,6 +160,7 @@ ImageUpload.defaultProps = {
   minSize: 0,
   limit: 0,
   text: <span>点击上传</span>,
+  previewTitle: '预览',
 };
 
 ImageUpload.propTypes = {
@@ -167,4 +169,5 @@ ImageUpload.propTypes = {
   minSize: PropTypes.number,
   limit: PropTypes.number,
   text: PropTypes.any,
+  previewTitle: PropTypes.string,
 };
